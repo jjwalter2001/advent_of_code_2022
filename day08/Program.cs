@@ -7,6 +7,7 @@ namespace day08
 
     public class Trees
     {
+        // Setup a 2 dimensional array the size of the forest.
         const int MROWS = 99;
         const int MCOLS = 99;
 
@@ -28,6 +29,10 @@ namespace day08
             }
         }
 
+        // Each of these functions calculates the viewing distance
+        // in each direction from the given tree.  The viewing distance
+        // is essentially the number of trees until we find one of the same
+        // or larger height.
         private int viewlengthtop(int row, int col)
         {
             for (int i = row - 1; i >= 0; i--)
@@ -62,6 +67,9 @@ namespace day08
             return MCOLS - col - 1;
         }
 
+        // These functions determine if a tree has a view to the edge of the forest - 
+        // i.e., whether every tree in a given direction is shorted than the
+        // selected tree.
         private bool isvisiblefromtop(int row, int col)
         {
             // For this, go down rows from 0 to the current position
@@ -118,10 +126,12 @@ namespace day08
 
         public int scenicscore(int row, int col)
         {
-            // If on the edge, then it is visible
+            // If on the edge, then the score is zero
             if ((row == 0) || (row == MROWS - 1) || (col == 0) || (col == MCOLS - 1))
                 return 0;
 
+            // Otherwise, get the viewing distances in each direction
+            // and multiple them out.
             int bot = viewlengthbottom(row, col);
             int top = viewlengthtop(row, col);
             int left = viewlengthleft(row, col);
