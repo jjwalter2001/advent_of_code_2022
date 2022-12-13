@@ -4,8 +4,8 @@ cpucycle = 0
 xreg = 1
 
 
-# This just processes a single CPU cycle and decides whether
-# we need to save the info
+# This just processes a single CPU cycle and decides what
+# output hits the CRT
 def process_cycle():
     global cpucycle
     global savedcycles
